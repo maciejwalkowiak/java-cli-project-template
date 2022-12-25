@@ -8,9 +8,10 @@ import java.util.concurrent.Callable;
 import java.util.stream.Stream;
 
 import org.apache.commons.io.filefilter.WildcardFileFilter;
+import org.example.picocli.PropertiesFileVersionProvider;
 import picocli.CommandLine;
 
-@CommandLine.Command(name = "app")
+@CommandLine.Command(name = "app", mixinStandardHelpOptions = true, versionProvider = PropertiesFileVersionProvider.class)
 public class Main implements Callable<Integer> {
 
     @CommandLine.Parameters(index = "0", description = "directory to search")
