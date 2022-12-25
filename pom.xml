@@ -12,9 +12,13 @@
 		<maven.compiler.source>17</maven.compiler.source>
 		<maven.compiler.target>17</maven.compiler.target>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<exec-maven-plugin.version>3.1.0</exec-maven-plugin.version>
+		<maven-assembly-plugin.version>3.4.2</maven-assembly-plugin.version>
+		<native-maven-plugin.version>0.9.19</native-maven-plugin.version>
 	</properties>
 
 	<dependencies>
+		<!-- just an example dependency -->
 		<dependency>
 			<groupId>commons-io</groupId>
 			<artifactId>commons-io</artifactId>
@@ -23,12 +27,14 @@
 	</dependencies>
 
 	<build>
+		<!-- simplifies running application without building the package -->
+		<!-- mvn -Dexec.args=directory -->
 		<defaultGoal>exec:java</defaultGoal>
 		<plugins>
 			<plugin>
 				<groupId>org.codehaus.mojo</groupId>
 				<artifactId>exec-maven-plugin</artifactId>
-				<version>3.1.0</version>
+				<version>${exec-maven-plugin.version}</version>
 				<executions>
 					<execution>
 						<goals>
@@ -44,6 +50,7 @@
 	</build>
 
 	<profiles>
+		<!-- pretty fast, builds an executable jar -->
 		<profile>
 			<id>jar</id>
 			<activation>
@@ -54,8 +61,7 @@
 					<plugin>
 						<groupId>org.apache.maven.plugins</groupId>
 						<artifactId>maven-assembly-plugin</artifactId>
-						<version>3.4.2</version>
-
+						<version>${maven-assembly-plugin.version}</version>
 						<configuration>
 							<archive>
 								<manifest>
@@ -69,7 +75,6 @@
 							<finalName>app</finalName>
 							<appendAssemblyId>false</appendAssemblyId>
 						</configuration>
-
 						<executions>
 							<execution>
 								<id>make-assembly</id>
@@ -79,11 +84,11 @@
 								</goals>
 							</execution>
 						</executions>
-
 					</plugin>
 				</plugins>
 			</build>
 		</profile>
+		<!-- pretty slow, builds a native executable -->
 		<profile>
 			<id>native</id>
 			<build>
@@ -91,7 +96,7 @@
 					<plugin>
 						<groupId>org.graalvm.buildtools</groupId>
 						<artifactId>native-maven-plugin</artifactId>
-						<version>0.9.19</version>
+						<version>${native-maven-plugin.version}</version>
 						<extensions>true</extensions>
 						<executions>
 							<execution>
