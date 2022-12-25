@@ -15,9 +15,17 @@
 		<exec-maven-plugin.version>3.1.0</exec-maven-plugin.version>
 		<maven-assembly-plugin.version>3.4.2</maven-assembly-plugin.version>
 		<native-maven-plugin.version>0.9.19</native-maven-plugin.version>
+		<maven-compiler-plugin.version>3.6.1</maven-compiler-plugin.version>
+		<picocli.version>4.7.0</picocli.version>
 	</properties>
 
 	<dependencies>
+		<dependency>
+			<groupId>info.picocli</groupId>
+			<artifactId>picocli</artifactId>
+			<version>${picocli.version}</version>
+		</dependency>
+
 		<!-- just an example dependency -->
 		<dependency>
 			<groupId>commons-io</groupId>
@@ -93,6 +101,24 @@
 			<id>native</id>
 			<build>
 				<plugins>
+					<!-- add picocli annotation processing https://picocli.info/#_annotation_processor -->
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-compiler-plugin</artifactId>
+						<version>${maven-compiler-plugin.version}</version>
+						<configuration>
+							<annotationProcessorPaths>
+								<path>
+									<groupId>info.picocli</groupId>
+									<artifactId>picocli-codegen</artifactId>
+									<version>${picocli.version}</version>
+								</path>
+							</annotationProcessorPaths>
+							<compilerArgs>
+								<arg>-Aproject=${project.groupId}/${project.artifactId}</arg>
+							</compilerArgs>
+						</configuration>
+					</plugin>
 					<plugin>
 						<groupId>org.graalvm.buildtools</groupId>
 						<artifactId>native-maven-plugin</artifactId>
