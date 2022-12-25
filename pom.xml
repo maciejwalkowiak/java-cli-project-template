@@ -99,6 +99,10 @@
 						<version>${native-maven-plugin.version}</version>
 						<extensions>true</extensions>
 						<configuration>
+							<mainClass>org.example.Main</mainClass>
+							<!-- executable file name -->
+							<imageName>app</imageName>
+							<!-- enable reachability metadata https://graalvm.github.io/native-build-tools/latest/maven-plugin.html#metadata-support -->
 							<metadataRepository>
 								<enabled>true</enabled>
 							</metadataRepository>
