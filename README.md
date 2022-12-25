@@ -1,6 +1,8 @@
 # Java CLI project template
 
-Probably the fastest way to bootstrap a Java Command Line Application (CLI) project!
+Probably the fastest way to bootstrap a **Java** Command Line Application (**CLI**) project!
+
+Click the big green *Use This Template* button and start building your own CLI.
 
 ## 🤩 Highlights
 
