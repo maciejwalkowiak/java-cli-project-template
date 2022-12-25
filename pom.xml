@@ -98,6 +98,11 @@
 						<artifactId>native-maven-plugin</artifactId>
 						<version>${native-maven-plugin.version}</version>
 						<extensions>true</extensions>
+						<configuration>
+							<metadataRepository>
+								<enabled>true</enabled>
+							</metadataRepository>
+						</configuration>
 						<executions>
 							<execution>
 								<id>build-native</id>
