@@ -24,7 +24,7 @@
 
 	<profiles>
 		<profile>
-			<id>executable-jar</id>
+			<id>jar</id>
 			<activation>
 				<activeByDefault>true</activeByDefault>
 			</activation>
