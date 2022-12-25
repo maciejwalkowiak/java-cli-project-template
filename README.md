@@ -33,3 +33,5 @@ Run application through Maven
 ```
 $ ./mvnw -Dexec.args=help
 ```
+
+Sounds good? Consider [❤️ Sponsoring](https://github.com/sponsors/maciejwalkowiak) the project! Thank you!
