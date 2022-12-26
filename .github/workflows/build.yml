@@ -1,0 +1,27 @@
+name: Build & Test Native Image
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+
+jobs:
+  Build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 'Checkout branch'
+        uses: actions/checkout@v3
+
+      - name: 'Set up Graal'
+        uses: graalvm/setup-graalvm@v1
+        with:
+          version: '22.3.0'
+          java-version: '17'
+          components: 'native-image'
+          cache: 'maven'
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: 'Build & Test'
+        run: ./mvnw package -Pnative
+
