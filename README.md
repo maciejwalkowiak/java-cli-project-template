@@ -18,13 +18,13 @@ Click the big green *Use This Template* button and start building your own CLI.
 
 ## 🤔 How to use
 
-Build an executable JAR:
+Run tests & build an executable JAR:
 
 ```
 $ ./mvnw package
 ```
 
-Build a native image:
+Run tests as native image & build a native executable:
 
 ```
 $ ./mvnw package -Pnative
