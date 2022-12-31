@@ -1,4 +1,4 @@
-name: Build & Test Native Image
+name: "CI: Build & Test Native Image"
 
 on:
   push:
