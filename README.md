@@ -9,6 +9,7 @@ Click the big green *Use This Template* button and start building your own CLI.
 - uses [Picocli](https://picocli.info/) for simple and elegant commands implementation
 - builds to an **executable jar** and **GraalVM Native Image**
 - preconfigured `help` and `version` commands
+- generates Bash/ZSH autocompletion scripts
 - uses **Maven** as a build tool
 - **no frameworks** like Spring, Micronaut or Quarkus
 
@@ -33,7 +34,7 @@ $ ./mvnw package -Pnative
 Run application through Maven
 
 ```
-$ ./mvnw -Dexec.args=help
+$ ./mvnw -Dexec.args=--help
 ```
 
 Sounds good? Consider [❤️ Sponsoring](https://github.com/sponsors/maciejwalkowiak) the project! Thank you!

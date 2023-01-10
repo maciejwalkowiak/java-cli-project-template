@@ -73,24 +73,46 @@
 	</dependencyManagement>
 
 	<build>
-		<!-- simplifies running application without building the package -->
-		<!-- mvn -Dexec.args=directory -->
-		<defaultGoal>exec:java</defaultGoal>
+		<defaultGoal>exec:java@run</defaultGoal>
 		<plugins>
 			<plugin>
 				<groupId>org.codehaus.mojo</groupId>
 				<artifactId>exec-maven-plugin</artifactId>
 				<version>${exec-maven-plugin.version}</version>
 				<executions>
+					<!-- simplifies running application without building the package -->
+					<!-- mvn -Dexec.args="list directory" -->
 					<execution>
+						<id>run</id>
 						<goals>
 							<goal>java</goal>
 						</goals>
+						<configuration>
+							<mainClass>org.example.Main</mainClass>
+						</configuration>
+					</execution>
+					<!-- generates bash/zsh autocompletion script -->
+					<execution>
+						<id>generate-autocompletion-script</id>
+						<phase>package</phase>
+						<goals>
+							<goal>exec</goal>
+						</goals>
+						<configuration>
+							<executable>java</executable>
+							<arguments>
+								<argument>-Dpicocli.autocomplete.systemExitOnError</argument>
+								<argument>-cp</argument>
+								<classpath/>
+								<argument>picocli.AutoComplete</argument>
+								<argument>--force</argument>
+								<argument>--completionScript</argument>
+								<argument>${project.build.directory}/app_completion.sh</argument>
+								<argument>org.example.Main</argument>
+							</arguments>
+						</configuration>
 					</execution>
 				</executions>
-				<configuration>
-					<mainClass>org.example.Main</mainClass>
-				</configuration>
 			</plugin>
 
 			<!-- writes file with application version needed for picocli's "-V" -->
