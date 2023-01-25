@@ -75,6 +75,24 @@
 	<build>
 		<defaultGoal>exec:java@run</defaultGoal>
 		<plugins>
+			<!-- add picocli annotation processing https://picocli.info/#_annotation_processor -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>${maven-compiler-plugin.version}</version>
+				<configuration>
+					<annotationProcessorPaths>
+						<path>
+							<groupId>info.picocli</groupId>
+							<artifactId>picocli-codegen</artifactId>
+							<version>${picocli.version}</version>
+						</path>
+					</annotationProcessorPaths>
+					<compilerArgs>
+						<arg>-Aproject=${project.groupId}/${project.artifactId}</arg>
+					</compilerArgs>
+				</configuration>
+			</plugin>
 			<plugin>
 				<groupId>org.codehaus.mojo</groupId>
 				<artifactId>exec-maven-plugin</artifactId>
@@ -185,24 +203,6 @@
 			<id>native</id>
 			<build>
 				<plugins>
-					<!-- add picocli annotation processing https://picocli.info/#_annotation_processor -->
-					<plugin>
-						<groupId>org.apache.maven.plugins</groupId>
-						<artifactId>maven-compiler-plugin</artifactId>
-						<version>${maven-compiler-plugin.version}</version>
-						<configuration>
-							<annotationProcessorPaths>
-								<path>
-									<groupId>info.picocli</groupId>
-									<artifactId>picocli-codegen</artifactId>
-									<version>${picocli.version}</version>
-								</path>
-							</annotationProcessorPaths>
-							<compilerArgs>
-								<arg>-Aproject=${project.groupId}/${project.artifactId}</arg>
-							</compilerArgs>
-						</configuration>
-					</plugin>
 					<plugin>
 						<groupId>org.graalvm.buildtools</groupId>
 						<artifactId>native-maven-plugin</artifactId>
